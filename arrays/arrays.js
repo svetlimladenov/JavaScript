@@ -25,7 +25,7 @@ function arraysAreObjects() {
 
 arraysAreObjects();
 
-function methods(){
+function methods() {
     let foo = [1, 2, 3, 4, 5, 6];
     let sliced = foo.splice(1,3 );
 
