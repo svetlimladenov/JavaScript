@@ -388,7 +388,7 @@ const arena = function arena(input) {
             });
     };
 
-    const commands = input; //.split('\n');
+    const commands = input.split('\n');
     let store = {};
     commands.some((command) => {
         if (command === 'Ave Cesar') {
