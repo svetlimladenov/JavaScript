@@ -1,0 +1,45 @@
+table, th, td {
+    border: 1px solid black;
+    padding: 0.25em;
+    margin: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+th, td {
+    width: 2.5em;
+}
+
+caption {
+    font-size: 1.5em;
+}
+
+#tableBody {
+    font-size:1.3em;
+}
+
+#dayNames {
+    font-weight: bold;
+}
+
+#generate {
+    background-color: orange;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.today {
+    background-color: orange;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#content, #form {
+    flex-basis: 100%;
+}

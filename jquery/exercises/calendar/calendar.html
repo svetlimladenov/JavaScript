@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <form id="form">
+        <div>
+            <input type="radio" id="english" name="locale" value="en-US">
+            <label for="english">English</label>
+            <input type="radio" id="bulgaria" name="locale" value="bg-BG">
+            <label for="bulgaria">Bulgaria</label>
+        </div>
+        <div>
+            <input type="date" value="2018-07-22" name="date" id="pickDate">
+        </div>
+        <div>
+            <button type="submit" id="generate">Generate</button>
+        </div>
+    </form>
+    
+    <div id="content"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="calendar.js"></script>
+<script>
+    window.onload = function(){
+        init("content");
+    }
+</script>
+</body>
+</html>

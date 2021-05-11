@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markup</title>
+<style>
+    br {
+    display: block;
+    margin: 10px 0;
+    }
+</style>
+</head>
+<body>
+    <div>
+        <p id="wiki">
+            =Document title=
+            ==First segment==
+            '''bold 1''' word ''italics 1'' '''bold2'''
+            [[hyper first]] '''Bold three''' ''italics2'''
+            word [[hyper2]] [[hyperlink2|with Label]]
+            ==Second segment==
+            ===Third segment===
+            word '''word'''[[pipe|bomb]]
+            =Heading1=
+            this ''word'' should by '''bold'''
+            ==Heading 2==-
+        </p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="markup.js"></script>
+    <script>
+        window.onload = function() {
+            parse("#wiki");
+        }
+    </script>
+</body>
+</html>

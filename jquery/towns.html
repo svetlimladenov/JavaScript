@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    td,
+    th {
+        background-color: #DDD;
+        padding: 5px 10px
+    }
+
+    input[type='text'] {
+        width: 60px
+    }
+
+    a {
+        margin-left: 5px
+    }
+</style>
+
+<body>
+    <table id="table">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Capital</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>
+                    <input type="text" id="countryText">
+                </td>
+                <td>
+                    <input type="text" id="capitalText">
+                </td>
+                <td>
+                    <a href="https://google.com/" id="create">Create</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+    // function createDeleteAction(tableRow) {
+    //     const rowActions = document.createElement("td");
+    //     const removeAction = document.createElement("a");
+    //     const deleteText = document.createTextNode("Delete");
+    //     removeAction.appendChild(deleteText);
+    //     removeAction.href = "#";
+    //     removeAction.addEventListener("click", function() {
+    //         tableBody.removeChild(tableRow);
+    //     });
+        
+    //     rowActions.appendChild(removeAction);
+    //     return rowActions;
+    // }
+
+
+    // (function () {
+    //     const createLink = document.getElementById("create");
+    //     const tableBody = document.getElementById("tableBody");
+    //     createLink.addEventListener("click", function () {
+    //         const tableRow = document.createElement("tr");
+    //         const countryCol = document.createElement("td");
+    //         countryCol.innerText = document.getElementById("countryText").value;
+    //         const capitalCol = document.createElement("td");
+    //         capitalCol.innerText = document.getElementById("capitalText").value;
+            
+    //         tableRow.appendChild(countryCol);
+    //         tableRow.appendChild(capitalCol);
+    //         tableRow.appendChild(createDeleteAction(tableRow));
+
+    //         tableBody.appendChild(tableRow);
+    //     });
+    // })();
+
+</script>
+<script>
+    (function(){
+        const tableBody = $("#tableBody");
+        $("#create").on("click", function(e) {
+            const countryText = $("#countryText").val();
+            const capitalText = $("#capitalText").val();
+            const row = $(`<tr><td>${countryText}</td><td>${capitalText}</td></tr>`);
+            const deleteAction = $(`<a href='#'>Delete</a>`);
+            deleteAction.on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                row.remove();
+            });
+            row.append($("<td></td>").append(deleteAction));
+            tableBody.append(row);
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    })();
+</script>
+</html>
