@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    function bindSample() {
+        // this will be the object passed in the apply() function
+        const obj = {
+            name: "Pesho",
+            walk: function (title, address) {
+                console.log(`${title} ${this.name} with address ${address}`);
+            }
+        };
+
+        const secondPerson = {
+            name: "Gosho"
+        };
+
+        const gosheWalk = obj.walk.bind(secondPerson);
+        gosheWalk("Mr", "kn");
+    }
+
+    bindSample();
+
+    function applySample() {
+        // this will be the object passed in the apply() function
+        const obj = {
+            name: "Pesho",
+            walk: function (title, address) {
+                console.log(`${title} ${this.name} with address ${address}`);
+            }
+        };
+
+        const secondPerson = {
+            name: "Gosho"
+        };
+
+        obj.walk.apply(secondPerson, ["Mr", "sofiaa"]);
+    }
+
+    // applySample();
+
+    function callSample() {
+        // this will be the object passed in the call() function
+        const obj = {
+            name: "Pesho",
+            walk: function (title, address) {
+                console.log(`${title} ${this.name} with address ${address}`);
+            }
+        };
+
+        const secondPerson = {
+            name: "Gosho"
+        };
+
+        obj.walk.call(secondPerson, "Mr", "sofiaa");
+    }
+
+    //callSample();
+
+    function methodSample() {
+        // this will be the object itsel
+        const obj = {
+            name: "Pesho",
+            walk: function () {
+                console.log(this.name);
+            }
+        };
+
+        obj.walk();
+    }
+
+    // methodSample();
+
+    function globalSample() {
+        // this will be the global object
+        function foo() {
+            console.log(this);
+            console.log(this === window);
+        }
+
+        foo();
+    }
+
+    // globalSample();
+
+    function constructorSample() {
+        // constructor, this will be the new object created
+        function bar() {
+            console.log(this);
+        };
+
+        let a = new bar();
+        console.log(a);
+    }
+
+    // constructorSample();
+</script>
+
+</html>
