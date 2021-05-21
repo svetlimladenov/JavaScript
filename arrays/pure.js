@@ -8,9 +8,9 @@ foo(a);
 console.log(a);
 
 
-let person = { userName : 'Ivan' };
+let person = { userName : "Ivan" };
 function bar(obj) {
-    obj.userName = 'Goshe';
+    obj.userName = "Goshe";
 }
 
 console.log(person.userName);

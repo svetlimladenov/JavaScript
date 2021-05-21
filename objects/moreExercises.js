@@ -43,8 +43,8 @@ const followers = function followers(input) {
 
     const result = input.reduce((database, cur) => {
         let localDatabase = JSON.parse(JSON.stringify(database));
-        const splitedLine = cur.split(' ');
-        if (splitedLine[0] === 'Welcome,') {
+        const splitedLine = cur.split(" ");
+        if (splitedLine[0] === "Welcome,") {
             const username = splitedLine[1];
             localDatabase = addUser(username, localDatabase);
         } else {
@@ -64,30 +64,30 @@ const followers = function followers(input) {
 };
 
 const followersInput = [
-    'Welcome, EmilConrad',
-    'Welcome, VenomTheDoctor',
-    'Welcome, Saffrona',
-    'Saffrona followed EmilConrad',
-    'Saffrona followed VenomTheDoctor',
-    'EmilConrad followed VenomTheDoctor',
-    'VenomTheDoctor followed VenomTheDoctor',
-    'Saffrona followed EmilConrad',
+    "Welcome, EmilConrad",
+    "Welcome, VenomTheDoctor",
+    "Welcome, Saffrona",
+    "Saffrona followed EmilConrad",
+    "Saffrona followed VenomTheDoctor",
+    "EmilConrad followed VenomTheDoctor",
+    "VenomTheDoctor followed VenomTheDoctor",
+    "Saffrona followed EmilConrad",
 ];
 
 const secondInput = [
-    'Welcome, JennaMarbles',
-    'JennaMarbles followed Zoella',
-    'Welcome, AmazingPhil',
-    'JennaMarbles followed AmazingPhil',
-    'Welcome, Zoella',
-    'Welcome, JennaMarbles',
-    'Zoella followed AmazingPhil',
-    'Christy followed Zoella',
-    'Zoella followed Christy',
-    'Welcome, JacksGap',
-    'JacksGap followed JennaMarbles',
-    'Welcome, PewDiePie',
-    'Welcome, Zoella',
+    "Welcome, JennaMarbles",
+    "JennaMarbles followed Zoella",
+    "Welcome, AmazingPhil",
+    "JennaMarbles followed AmazingPhil",
+    "Welcome, Zoella",
+    "Welcome, JennaMarbles",
+    "Zoella followed AmazingPhil",
+    "Christy followed Zoella",
+    "Zoella followed Christy",
+    "Welcome, JacksGap",
+    "JacksGap followed JennaMarbles",
+    "Welcome, PewDiePie",
+    "Welcome, Zoella",
 ];
 
 const browserLogger = function browserLogger(browser, actions) {
@@ -108,25 +108,25 @@ const browserLogger = function browserLogger(browser, actions) {
     };
 
     localBrowser.clear = () => {
-        localBrowser['Open Tabs'] = [];
+        localBrowser["Open Tabs"] = [];
         localBrowser["Recently Closed"] = [];
-        localBrowser['Browser Logs'] = [];
+        localBrowser["Browser Logs"] = [];
         return false;
     };
 
     const result = actions.reduce((acc, curr) => {
-        const [command, website] = curr.split(' ');
+        const [command, website] = curr.split(" ");
         const lowerCommand = command.toLowerCase();
         if (acc[lowerCommand](website)) {
-            acc['Browser Logs'].push(curr);
+            acc["Browser Logs"].push(curr);
         }
         return acc;
     }, localBrowser);
 
     console.log(result["Browser Name"]);
-    console.log(`Open Tabs: ${result['Open Tabs'].join(', ')}`);
-    console.log(`Recently Closed: ${result['Recently Closed'].join(', ')}`);
-    console.log(`Browser Logs: ${result['Browser Logs'].join(', ')}`);
+    console.log(`Open Tabs: ${result["Open Tabs"].join(", ")}`);
+    console.log(`Recently Closed: ${result["Recently Closed"].join(", ")}`);
+    console.log(`Browser Logs: ${result["Browser Logs"].join(", ")}`);
 };
 
 // browserLogger({
@@ -139,7 +139,7 @@ const browserLogger = function browserLogger(browser, actions) {
 
 browserLogger({"Browser Name":"Mozilla Firefox",
 "Open Tabs":["YouTube"],
-"Recently Closed":['Gmail', 'Dropbox'],
-"Browser Logs":['Open Gmail', 'Close Gmail', 'Open Dropbox', 'Open YouTube', 'Close Dropbox']},
-['Open Wikipedia', 'Clear History and Cache', 'Open Twitter']
+"Recently Closed":["Gmail", "Dropbox"],
+"Browser Logs":["Open Gmail", "Close Gmail", "Open Dropbox", "Open YouTube", "Close Dropbox"]},
+["Open Wikipedia", "Clear History and Cache", "Open Twitter"]
 );

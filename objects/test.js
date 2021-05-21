@@ -1,9 +1,9 @@
-let person = { name: 'Name' };
+let person = { name: "Name" };
 
 function foo(person1) {
     let a = person1;
     function bar(aa) {
-        aa.name = 'Ivan';
+        aa.name = "Ivan";
     }
     bar(a);
 }
