@@ -14,7 +14,7 @@
         "no-console" :"off",
         "linebreak-style" : "off",
         "indent" : ["warn", 4],
-        "quotes":"off",
+        "quotes": ["warn", "double"],
         "arrow-body-style":"off"
     }
 }
