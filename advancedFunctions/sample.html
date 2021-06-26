@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id="element">Towns</h1>
+
+    <script>
+        const foo = {
+            name: "Ivan",
+            watchedFilms: ["GOT","VENOM"],
+            watchFilm: function watchFilm(film) {
+                this.watchedFilms.push(film);
+            },
+            printMovies: function arrowFlex() {
+                console.log(this);
+
+                this.watchedFilms.forEach((film) => {
+                    console.log(`${this.name} watched ${film}`);
+                });
+            }
+        };
+
+        document.getElementById("element").addEventListener("click", foo.printMovies.bind(foo));
+    </script>
+</body>
+
+</html>

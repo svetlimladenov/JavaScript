@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\advancedFunctions\\demo.js"
+            "program": "${workspaceFolder}\\advancedFunctions\\deconstruction.js"
         }
     ]
 }
