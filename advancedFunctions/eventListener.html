@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="element">click</button>
+</body>
+<script>
+    const obj = {
+        name: "Ivan",
+        getInfo() {
+            console.log(this);
+            alert(this.name);
+            function test (){
+                console.log(this);
+            };
+            setTimeout(test.bind(this), 0)
+        },
+        arrowInfo: function () {
+            console.log(this);
+        }
+    }
+
+    document.getElementById("element").addEventListener("click", obj.arrowInfo.bind(obj));
+
+
+    const arrow = test => {
+        console.log(this);
+    }
+
+    arrow("me");
+</script>
+</html>

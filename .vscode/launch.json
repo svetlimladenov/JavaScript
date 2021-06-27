@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\advancedFunctions\\deconstruction.js"
+            "program": "${workspaceFolder}\\advancedFunctions\\vectorMath.js"
         }
     ]
 }

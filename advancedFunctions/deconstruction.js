@@ -20,3 +20,46 @@ const obj = {
 const { address } = obj;
 
 console.log(address.info());
+
+const bar = {
+    name: "Goshe",
+    method1() {
+        const generateGreeting = function generateGreeting() {
+            // 'use strict';
+            console.log(this);
+            return `Hello my name is ${this.name}`;
+        };
+
+        const greeting = generateGreeting(); // .call(this);
+        console.log(greeting);
+    },
+    method2() {
+        const generateGreeting = () => {
+            // 'use strict';
+            console.log(this);
+            return `Hello my name is ${this.name}`;
+        };
+
+        const greeting = generateGreeting();
+        console.log(greeting);
+    },
+};
+
+bar.method1();
+bar.method2();
+
+
+const buz = function buz() {
+    return {
+        bam: {
+            info() {
+                console.log("hello");
+            },
+        },
+    };
+};
+
+const { bam } = buz();
+bam.info();
+
+console.log(globalThis === this);
