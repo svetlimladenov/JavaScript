@@ -8,10 +8,8 @@
             "type": "pwa-node",
             "request": "launch",
             "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\advancedFunctions\\vectorMath.js"
+            "skipFiles": ["<node_internals>/**"],
+            "program": "${workspaceFolder}\\objectComposition\\collection.js"
         }
     ]
 }

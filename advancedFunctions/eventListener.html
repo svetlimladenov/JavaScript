@@ -8,6 +8,7 @@
 </head>
 <body>
     <button id="element">click</button>
+    <button id="second">second</button>
 </body>
 <script>
     const obj = {
@@ -33,5 +34,21 @@
     }
 
     arrow("me");
+
+    const secondTry = {
+        second() {
+            console.log(this);
+        }
+    }
+
+    setTimeout(function t() {
+        debugger;
+        console.log(this, "setTimeout func");
+    }, 0);
+
+    document.getElementById("second").addEventListener("click", function() {
+        console.log(this);
+    });
+
 </script>
 </html>

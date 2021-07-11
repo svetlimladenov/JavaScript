@@ -1,21 +1,61 @@
-const solution = (() => {
-    return {
-        add(vec1, vec2) {
-            return [vec1[0] + vec1[1], vec2[0] + vec2[1]];
-        },
-        multiply(vec1, scalar) {
+/* eslint-disable wrap-iife */
 
-        },
-        length(vec1) {
-
-        },
-        dot(vec1, vec2) {
-
-        },
-        cross(vec1, vec2) {
-
-        },
-    };
+(() => {
+    console.log(this, "arrow iife");
 })();
 
-console.log(solution.add([1, 1], [1, 0]));
+(function test() {
+    console.log(this, "function iife");
+})();
+
+setTimeout(function t() {
+    console.log(this, "setTimeout func");
+}, 0);
+
+const window = {};
+
+function mySetTimeout(callback) {
+    callback(); //
+    callback.call(this);
+}
+
+mySetTimeout(function cb() {
+    console.log(this);
+});
+
+window.mySetTimeout = mySetTimeout;
+
+window.mySetTimeout(function cb() {
+    console.log(this, "normal func callback");
+});
+
+window.mySetTimeout(() => {
+    console.log(this, "arrow callback");
+});
+
+const test = {
+    arr: [1, 2, 3],
+    name: "test",
+    demo() {
+        this.arr.forEach((n) => {
+            console.log(n, this.name);
+        });
+    },
+};
+
+test.demo();
+
+const myDocument = {
+    name: "my doc",
+    addEventListener(event, cb) {
+        cb.call(this, event);
+    },
+};
+
+myDocument.addEventListener("click", (e) => {
+    console.log(this === globalThis);
+    console.log(e);
+});
+
+const arrow = () => console.log(this);
+arrow();
