@@ -7,7 +7,7 @@ function foo() {
 foo();
 // console.log(a); a will be hiden in the scope of foo, but we polute the global scope with the foo identifier
 
-(function bar(){
+(function bar() {
     var b = "bar";
     function innerHiddenFunction() {
         console.log(b);
@@ -32,7 +32,7 @@ foo();
 
 (function baz() {
     console.log("inside baz");
-}()); // the invoking part is moved inside the outer (), eslint(wrap-iife)
+})(); // the invoking part is moved inside the outer (), eslint(wrap-iife)
 // This rule requires all immediately-invoked function expressions to be wrapped in parentheses
 
 var window = {
@@ -40,10 +40,10 @@ var window = {
 };
 
 // https://github.com/umdjs/umd
-(function IIFE( def ){
-    def( window );
-})(function def(global){
+(function IIFE(def) {
+    def(window);
+})(function def(global) {
     var a = 3;
-    console.log( a ); // 3
-    console.log( global.a ); // 2
+    console.log(a); // 3
+    console.log(global.a); // 2
 });

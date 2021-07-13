@@ -4,7 +4,7 @@ function foo(a) {
     function bar() {
         console.log(a);
     }
-    
+
     var c = 1;
 }
 
