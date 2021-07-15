@@ -11,3 +11,5 @@ function bar() {
 
 bar();
 console.log(c);
+
+var a = 1;

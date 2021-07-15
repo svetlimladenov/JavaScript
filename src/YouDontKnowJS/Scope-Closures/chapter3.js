@@ -1,11 +1,12 @@
-function foo(a) {
-    var b = 5;
-    bar();
-    function bar() {
-        console.log(a);
+function myCoolModule(a) {
+    if (true) {
+        function bar() {
+            // functions a are not bound to the block scope
+            console.log("bar");
+        }
     }
 
-    var c = 1;
+    bar();
 }
 
-foo(2);
+myCoolModule(2);

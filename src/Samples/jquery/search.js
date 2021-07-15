@@ -3,10 +3,9 @@
     withJquery();
 })();
 
-
 function withJquery() {
     $("#search").on("click", function () {
-        const searchTerm = $('#searchText').val();
+        const searchTerm = $("#searchText").val();
         console.log(searchTerm);
         $("li")
             .css("font-weight", "normal")
@@ -14,7 +13,7 @@ function withJquery() {
                 return elem.textContent.toLowerCase().indexOf(searchTerm) > -1;
             })
             .css("font-weight", "bold");
-    })
+    });
 }
 
 function noJquery() {
@@ -23,9 +22,11 @@ function noJquery() {
     search.addEventListener("click", function (e) {
         cleanHighlight(towns);
         const searchText = document.getElementById("searchText").value;
-        towns.filter(x => x.textContent.toLowerCase().startsWith(searchText)).forEach(town => {
-            town.style.backgroundColor = "yellow";
-        });
+        towns
+            .filter((x) => x.textContent.toLowerCase().startsWith(searchText))
+            .forEach((town) => {
+                town.style.backgroundColor = "yellow";
+            });
     });
 
     function cleanHighlight(towns) {
