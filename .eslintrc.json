@@ -15,6 +15,7 @@
         "quotes": ["warn", "double"],
         "arrow-body-style": "off",
         "max-len": ["error", { "ignoreComments": true }],
-        "wrap-iife": ["warn", "inside"]
+        "wrap-iife": ["warn", "inside"],
+        "comma-dangle": ["error", "never"]
     }
 }
