@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <title>Playground</title>
-</head>
-<body>
-    <h1>Playground 1</h1>
-    <button id="load">Load Posts</button>
-    <button id="toggleCache">Toggle Cache</button>
-    <h4>Cache: </h4>
-    <div id="cache-info" class="cache-enabled"></div>
-    <div id="holder">
-
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="scripts//utils.js"></script>
-    <script src="scripts/postLoader.js"></script>
-    <script>
-        document.getElementById("load").addEventListener("click", function loadData() {
-            const holder = $("#holder");
-             // we call loadAll outside its lexical scope, but it still has reference to it because of closure
-             // postApi objects is private, as well as cached properties
-            PostLoader.loadAll((posts) => {
-                posts.forEach((post) => {
-                    const postElement = $($(document.createElement('div'))).append(`${post.title}`);
-                    holder.append(postElement);
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles/style.css" />
+        <title>Playground</title>
+    </head>
+    <body>
+        <h1>Playground 1</h1>
+        <button id="load">Load Posts</button>
+        <button id="toggleCache">Toggle Cache</button>
+        <h4>Cache:</h4>
+        <div id="cache-info" class="cache-enabled"></div>
+        <div id="holder"></div>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"
+        ></script>
+        <script src="scripts//utils.js"></script>
+        <script src="scripts/postLoader.js"></script>
+        <script>
+            document
+                .getElementById("load")
+                .addEventListener("click", function loadData() {
+                    const holder = $("#holder");
+                    // we call loadAll outside its lexical scope, but it still has reference to it because of closure
+                    // postApi objects is private, as well as cached properties
+                    PostLoader.loadAll((posts) => {
+                        posts.forEach((post) => {
+                            const postElement = $(
+                                $(document.createElement("div"))
+                            ).append(`${post.title}`);
+                            holder.append(postElement);
+                        });
+                    });
                 });
-            });
-        });
 
-        const cacheInfo = $("#cache-info");
+            const cacheInfo = $("#cache-info");
 
-        document.getElementById("toggleCache").addEventListener("click", () => {
-            PostLoader.toggleCache();
-            cacheInfo.toggleClass("cache-enabled");
-        });
-    </script>
-</body>
+            document
+                .getElementById("toggleCache")
+                .addEventListener("click", () => {
+                    PostLoader.toggleCache();
+                    cacheInfo.toggleClass("cache-enabled");
+                });
+        </script>
+    </body>
 </html>
