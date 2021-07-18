@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}\\src\\YouDontKnowJS\\Scope-Closures\\arrowFunc.js"
+            "program": "${workspaceFolder}\\src\\YouDontKnowJS\\this-ObjectPrototypes\\call-site\\bind-mine.js"
         }
     ]
 }
