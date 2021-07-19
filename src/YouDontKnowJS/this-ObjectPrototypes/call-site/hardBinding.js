@@ -32,7 +32,7 @@ function test(n) {
 }
 
 function bind(fn, obj) {
-    return function () {
+    return function bined() {
         return fn.apply(obj, arguments); // if we will pass arguments, we should use apply
     };
 }

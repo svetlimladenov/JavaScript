@@ -22,7 +22,7 @@ const foo = {
         }
         const localPrint = printLine.bind(this);
         this.watchedFilms.forEach(localPrint);
-    },
+    }
 };
 
 function Person() {
@@ -44,7 +44,7 @@ const human = (() => {
         },
         climb: (speed, easing, direction, height) => {
             console.log(`${speed} ${easing} ${direction} ${height}`);
-        },
+        }
     };
 
     const speed = 1;
