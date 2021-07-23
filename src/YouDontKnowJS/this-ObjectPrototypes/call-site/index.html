@@ -30,6 +30,29 @@
             barRef(); // oops, global
 
             setTimeout(obj.foo, 100);
+
+            Function.prototype.sofBind = function (oThis) {
+                var bindArgs = Array.prototype.slice.call(arguments, 1);
+                var self = this;
+                var bound = function bound() {
+                    return self.apply(
+                        this === window ? oThis : this,
+                        bindArgs.concat([].slice.call(arguments, 1))
+                    );
+                };
+
+                return bound;
+            };
+
+            const bazObj = {
+                a: "baz obj"
+            };
+
+            const baz = foo.sofBind(bazObj);
+            baz();
+
+            baz.call({ a: "overiding soft bindingg" });
+            setTimeout(baz, 0);
         </script>
     </body>
 </html>
