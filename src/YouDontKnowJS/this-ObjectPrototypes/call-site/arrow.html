@@ -21,6 +21,32 @@
 
             const foo = obj.bar.bind({ a: "bined" });
             foo(); // again, oops, global
+
+            function Component(props) {
+                this.props = props;
+
+                this.render = function render() {
+                    console.log(this.props);
+                };
+            }
+
+            Component.prototype.foo = function () {
+                console.log(this.props);
+            };
+
+            const App = new Component({
+                counter: 1
+            });
+
+            // since Component is called with a constuctor call (with new)
+            // new object is created, and returned and we store it in the App constant
+            // this is the new object, later returned and attached to app
+            // thats why when we call render();
+            // this is bound using the implicti binding, and 'this' will be the object returned from the new constructor call
+
+            App.render();
+            App.foo(); // foo is found on the prototype chain, but its still executed as App is the "owning object"
+            // and this is bound to the App object
         </script>
     </body>
 </html>
