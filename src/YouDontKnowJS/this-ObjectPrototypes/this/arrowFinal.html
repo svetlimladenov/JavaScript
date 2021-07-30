@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const arr = () => console.log(this);
+            arr(); // window
+
+            function createArrow() {
+                const arr = () => console.log(this);
+                arr(); // windows
+            }
+
+            createArrow(); // windows
+
+            function getArrow() {
+                // the function arrow itself is created when getArrow(..) is executed
+                // when getArrow(..) is executed it has an object bound to 'this'
+                // the arrow function uses the same object for its 'this'
+                const arrow = () => {
+                    console.log(this);
+                };
+                return arrow;
+            }
+
+            const globalArrow = getArrow();
+            globalArrow(); // windows
+
+            const customArrow = getArrow.call({ a: "gotcha" });
+            customArrow(); // {a: "gotcha"}
+
+            const obj = {
+                arr: () => {
+                    console.log(this); // at the time the arr property is created, we are in the global scope, so thats why 'this' is bound to window
+                }
+            };
+
+            obj.arr(); // window again
+
+            const foo = {
+                a: "gotcha again",
+                createArr() {
+                    return () => console.log(this);
+                }
+            };
+
+            const fooArrow = foo.createArr(); // our arrow function is created when we exeucute createArr(..),
+            // when its executed foo is bound to 'this' and the arrow function 'inherits' it
+            fooArrow(); // {a: "gotcha again", createArr: f}
+
+            const reboundFooArrow = foo.createArr.call({
+                a: "gotcha rebound :D"
+            });
+
+            // our arrow function is declared when we execute createArr, but since we execute it with call, we change its 'this' binding to the new obj
+            // thats why the arrow function has it as well
+            reboundFooArrow(); // {a: "gotcha rebound :D"}
+
+            const require = {
+                test(cb) {
+                    cb();
+                }
+            };
+
+            require.test(() => console.log(this)); // window, because we create the arrow function itself, as a parameter, but its is actually in the global scope
+        </script>
+    </body>
+</html>
