@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}\\src\\YouDontKnowJS\\this-ObjectPrototypes\\es6Classes\\v8Dev.js"
+            "program": "${workspaceFolder}\\src\\Samples\\prototypeChain\\prototyping.js"
         }
     ]
 }
