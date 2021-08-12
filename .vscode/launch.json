@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}\\src\\Samples\\prototypeChain\\prototyping.js"
+            "program": "${workspaceFolder}\\src\\Functional-Lite JavaScript\\Immutability\\shallowEquality.js"
         }
     ]
 }

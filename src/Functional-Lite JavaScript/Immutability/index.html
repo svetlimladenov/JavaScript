@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <dir id="root"></dir>
+        <script>
+            function rerenderTheStoreSample() {
+                const dataStore = {
+                    name: "Ivan",
+                    bio: "Hi my name is Ivan"
+                };
+
+                const root = document.getElementById("root");
+
+                function renderProfileInfo(data) {
+                    function createProfileData(profileData) {
+                        const profileDataWrapper =
+                            document.createElement("div");
+                        const nameHeader = document.createElement("h1");
+                        nameHeader.textContent = data.name;
+                        const bioParagraph = document.createElement("p");
+                        bioParagraph.textContent = data.bio;
+
+                        profileDataWrapper.appendChild(nameHeader);
+                        profileDataWrapper.appendChild(bioParagraph);
+
+                        const nextUser = document.createElement("button");
+                        nextUser.textContent = "Next user";
+
+                        profileDataWrapper.appendChild(nextUser);
+
+                        nextUser.addEventListener("click", () => {
+                            dataStore.name = "Goshe";
+                            dataStore.bio = "Hi my name is Goshe";
+
+                            renderProfileInfo(dataStore); // when the data is loaded we update the ui
+                            // we don't know what changed
+                        });
+
+                        return profileDataWrapper;
+                    }
+
+                    if (root.lastChild) {
+                        root.removeChild(root.lastChild);
+                    }
+
+                    root.appendChild(createProfileData(data));
+                }
+
+                renderProfileInfo(dataStore);
+            }
+
+            // rerenderTheStoreSample();
+
+            function dirtyBitsSample() {
+                const dataStore = {
+                    dirty: true, // initially set it to true, after the first render will be set to false
+                    _raw: {
+                        name: "Ivan",
+                        bio: "Hi my name is Ivan"
+                    },
+                    get: function (key) {
+                        return this._raw[key];
+                    },
+                    set: function (key, newValue) {
+                        this._raw[key] = newValue;
+                        this.dirty = true;
+                    }
+                };
+
+                const root = document.getElementById("root");
+
+                function renderProfileInfo(data) {
+                    if (!data.dirty) {
+                        return; // if the data is not dirty it means we dont have to do the actual rerendering
+                    }
+
+                    function createProfileData(profileData) {
+                        console.log("render");
+                        const profileDataWrapper =
+                            document.createElement("div");
+                        const nameHeader = document.createElement("h1");
+                        nameHeader.textContent = data.get("name");
+                        const bioParagraph = document.createElement("p");
+                        bioParagraph.textContent = data.get("bio");
+
+                        profileDataWrapper.appendChild(nameHeader);
+                        profileDataWrapper.appendChild(bioParagraph);
+
+                        const nextUser = document.createElement("button");
+                        nextUser.textContent = "Next user";
+
+                        profileDataWrapper.appendChild(nextUser);
+
+                        nextUser.addEventListener("click", () => {
+                            dataStore.set("name", "Goshe");
+                            dataStore.set("bio", "Hi my name is Goshe");
+
+                            renderProfileInfo(dataStore);
+                        });
+
+                        return profileDataWrapper;
+                    }
+
+                    if (root.lastChild) {
+                        root.removeChild(root.lastChild);
+                    }
+
+                    data.dirty = false;
+                    root.appendChild(createProfileData(data));
+                }
+
+                renderProfileInfo(dataStore); // Update the UI
+                renderProfileInfo(dataStore); // no update
+                renderProfileInfo(dataStore); // no update
+                dataStore.set("name", "ivan with small letter");
+                renderProfileInfo(dataStore); // updated the UI
+            }
+            dirtyBitsSample();
+        </script>
+    </body>
+</html>
