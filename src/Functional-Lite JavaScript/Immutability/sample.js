@@ -11,16 +11,32 @@ function mutable() {
     console.log(arr); // [6, 8, 10]
 }
 
-function doubleThemImmutable(list) {
-    const newList = [];
-    for (let i = 0; i < list.length; i += 1) {
-        newList[i] = list[i] * 2;
+function immutable1() {
+    function doubleThemImmutable(list) {
+        const newList = [];
+        for (let i = 0; i < list.length; i += 1) {
+            newList[i] = list[i] * 2;
+        }
+
+        return newList;
     }
 
-    return newList;
+    const arr = [3, 4, 5];
+    const arr2 = doubleThemImmutable(arr);
+    console.log(arr); // [3, 4, 5]
+    console.log(arr2); // [6, 8, 10]
 }
 
-const arr = [3, 4, 5];
-const arr2 = doubleThemImmutable(arr);
-console.log(arr); // [3, 4, 5]
-console.log(arr2); // [6, 8, 10]
+function immutable2() {
+    function double(list) {
+        return list.map((x) => x * 2);
+    }
+
+    const arr = [3, 4, 5];
+    const arr2 = double(arr);
+
+    console.log(arr); // [3, 4, 5]
+    console.log(arr2); // [6, 8, 10]
+}
+
+immutable2();
