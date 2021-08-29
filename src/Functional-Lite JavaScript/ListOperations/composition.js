@@ -34,3 +34,21 @@ const unique = [1, 2, 2, 2, 4, 5, 5, 6, 6, 7, 7].reduce((acc, cur, idx) => {
 }, []);
 
 console.log(unique);
+
+const arr = Array(64).fill(null);
+
+const reduced = arr.reduce(
+    (acc, curr, idx) => {
+        if ((idx + 1) % 8 === 0 && idx !== 0) {
+            acc.currentRow.push(idx);
+            acc.board.push(acc.currentRow.slice());
+            acc.currentRow = [];
+            return acc;
+        }
+        acc.currentRow.push(idx);
+        return acc;
+    },
+    { currentRow: [], board: [] }
+);
+
+console.log(reduced);
