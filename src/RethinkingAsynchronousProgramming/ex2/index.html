@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function ajaxThunk(url) {
+        let res;
+        let fn;
+
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", function () {
+          if (fn) {
+            fn(JSON.parse(this.responseText));
+          } else {
+            res = JSON.parse(this.responseText);
+          }
+        });
+        oReq.open("GET", url);
+        oReq.send();
+
+        return function (cb) {
+          if (res) {
+            cb(res);
+          } else {
+            fn = cb;
+          }
+        };
+      }
+
+      const lukeReq = ajaxThunk("https://swapi.dev/api/people/1");
+      const secondReq = ajaxThunk("https://swapi.dev/api/people/2");
+
+      lukeReq((luke) => {
+        console.log(luke);
+        secondReq((second) => {
+          console.log(second);
+        });
+      });
+
+      console.log("waiting...");
+    </script>
+  </body>
+</html>
