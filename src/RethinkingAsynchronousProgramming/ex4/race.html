@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function ajax(url) {
+        return new Promise((resolve, reject) => {
+          function handleResponse() {
+            resolve(JSON.parse(this.responseText));
+          }
+
+          var oReq = new XMLHttpRequest();
+          console.log("sending req");
+          oReq.addEventListener("load", handleResponse);
+          oReq.open("GET", url);
+          oReq.send();
+        });
+      }
+
+      function output(res) {
+        console.log(res);
+      }
+
+      function error(err) {
+        console.error(err);
+      }
+
+      function createTimeout(ms) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject("timeout");
+          }, ms);
+        });
+      }
+
+      function requestWithTimeout(url, ms) {
+        const req = ajax(url);
+        return Promise.race([req, createTimeout(ms)]);
+      }
+
+      requestWithTimeout("https://swapi.dev/api/people/1", 1000)
+        .then(output)
+        .catch(error);
+    </script>
+  </body>
+</html>
